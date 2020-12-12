@@ -1,0 +1,10 @@
+{
+  "watch": ["pkg"],
+  "ext": "go",
+  "ignore": ["pkg/client/sample-data"],
+  "delay": "3",
+  "execMap": {
+    "go": "go run"
+  },
+  "signal": "SIGTERM"
+}

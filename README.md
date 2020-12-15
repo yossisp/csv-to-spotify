@@ -2,7 +2,7 @@
 
 ### About
 
-The project allows you to create playlists in Spotify from a CSV file.
+The project allows you to create playlists in Spotify from a CSV file. It can be used with this frontend [app](https://github.com/yossisp/csv-to-spotify-ui).
 
 ### Installation
 

@@ -4,7 +4,7 @@
   services:
     - docker:dind
   script:
-    - source build_script.sh
+    - docker build -f Dockerfile -t $DOCKERHUB_CSV_TO_SPOTIFY_IMAGE .
     - docker login --username="$DOCKERHUB_USERNAME" --password="$DOCKERHUB_PASSWORD"
     - docker push "$DOCKERHUB_CSV_TO_SPOTIFY_IMAGE"
     - docker logout

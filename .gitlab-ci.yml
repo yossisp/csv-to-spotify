@@ -1,0 +1,18 @@
+.build:
+  image: docker:18
+  stage: build
+  services:
+    - docker:dind
+  script:
+    - make docker-build-prod
+    - docker login --username="$DOCKERHUB_USERNAME" --password="$DOCKERHUB_PASSWORD"
+    - docker push "$DOCKERHUB_CSV_TO_SPOTIFY_IMAGE"
+    - docker logout
+
+build-production:
+  extends: .build
+  environment:
+    name: production
+  only:
+    variables:
+      - $CI_COMMIT_REF_NAME == "master"

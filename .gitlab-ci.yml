@@ -1,13 +1,10 @@
 .build:
-  image: debian:jessie
+  image: docker:18
   stage: build
   services:
     - docker:dind
-  before_script:
-    - apt-get update
-    - apt-get install make -y
   script:
-    - make docker-build-prod
+    - source build_script.sh
     - docker login --username="$DOCKERHUB_USERNAME" --password="$DOCKERHUB_PASSWORD"
     - docker push "$DOCKERHUB_CSV_TO_SPOTIFY_IMAGE"
     - docker logout

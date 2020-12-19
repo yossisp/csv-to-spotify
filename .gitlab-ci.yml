@@ -3,6 +3,9 @@
   stage: build
   services:
     - docker:dind
+  before_script:
+    - apt-get update
+    - apt-get install make -y
   script:
     - make docker-build-prod
     - docker login --username="$DOCKERHUB_USERNAME" --password="$DOCKERHUB_PASSWORD"

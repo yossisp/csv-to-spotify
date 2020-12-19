@@ -1,5 +1,5 @@
 .build:
-  image: docker:18
+  image: debian:jessie
   stage: build
   services:
     - docker:dind

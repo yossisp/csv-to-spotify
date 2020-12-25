@@ -18,7 +18,7 @@ build-production:
       - $CI_COMMIT_REF_NAME == "master"
 
 .aws-beanstalk:
-  stage: aws_elastic_beanstalk
+  stage: deploy
   image: garland/aws-cli-docker:latest
   script:
     - sh -c "aws configure set region $AWS_REGION_CSV_TO_SPOTIFY && aws elasticbeanstalk update-environment --environment-name $AWS_ENV_NAME_CSV_TO_SPOTIFY --version-label $AWS_VERSION_CSV_TO_SPOTIFY"

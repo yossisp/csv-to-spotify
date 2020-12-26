@@ -14,8 +14,8 @@ import (
 	"github.com/yossisp/csv-to-spotify/pkg/runner"
 	"github.com/yossisp/csv-to-spotify/pkg/websocket"
 
-	"github.com/yossisp/csv-to-spotify/pkg/db"
 	"github.com/rs/cors"
+	"github.com/yossisp/csv-to-spotify/pkg/db"
 )
 
 var (
@@ -91,9 +91,13 @@ func InitServer() {
 		runner := runner.NewRunner(payload, dbUser)
 		go runner.Run()
 	}
+	healthHandler := func(w http.ResponseWriter, req *http.Request) {
+		return
+	}
 	mux.HandleFunc("/csv", csvHandler)
 	mux.HandleFunc("/user", userHandler)
 	mux.HandleFunc("/websocket", websocket.WSConnectionHandler)
+	mux.HandleFunc("/health", healthHandler)
 	handler := cors.Handler(mux)
 	logger("%s: Listing for requests at port %s", funcName, conf.Port)
 	log.Fatal(http.ListenAndServe(":"+conf.Port, handler))

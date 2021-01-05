@@ -61,8 +61,16 @@ const (
 	user        = "USER"
 	update      = "UPDATE"
 	jobFinished = "JOB_FINISHED"
-	pongWait    = 10 * time.Second
-	logPrefix   = "websocket.go"
+
+	// Time allowed to write a message to the peer.
+	writeWait = 10 * time.Second
+
+	// Time allowed to read the next pong message from the peer.
+	pongWait = 15 * time.Second
+
+	// Send pings to peer with this period. Must be less than pongWait.
+	pingPeriod = (pongWait * 9) / 10
+	logPrefix  = "websocket.go"
 )
 
 var (
@@ -78,6 +86,22 @@ func init() {
 	go wsConnectionsMap.processKafkaMessage()
 }
 
+func (ws *Websocket) ping() {
+	ticker := time.NewTicker(pingPeriod)
+	defer ticker.Stop()
+	for {
+		select {
+		case <-ticker.C:
+			if err := ws.WriteControl(websocket.PingMessage, []byte{}, time.Now().Add(writeWait)); err != nil {
+				log.Println("ping:", err)
+			}
+		case <-ws.quitChan:
+			log.Println("ping quitChan")
+			return
+		}
+	}
+}
+
 // listens on socket connection and quits if some read error occurred
 // tells WSConnectionHandler to quit via quitChan
 func (ws *Websocket) listen() {
@@ -85,6 +109,8 @@ func (ws *Websocket) listen() {
 		log.Println("defer")
 		close(ws.quitChan)
 	}()
+
+	go ws.ping()
 
 	for {
 		clientMessage := clientPayload{}

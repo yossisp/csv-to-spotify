@@ -6,7 +6,7 @@ The project allows you to create playlists in Spotify from a CSV file. It can be
 
 ### Installation
 
-Execute `make docker-build` in order to build a Docker image with the binary. Running `make docker-run` will create a Docker container and the application can be reached at port 8000 by default (or via the port set in `PORT` environment variable). If the client application is a website make sure that `ALLOWED_ORIGINS` environment variable is updated with the website origin.
+Execute `make docker-build` in order to build a Docker image with the binary. Running `make docker-run` will create a Docker container and the application can be reached at port 8000 by default. If the client application is a website which will run on a different port make sure that `ALLOWED_ORIGINS` environment variable is updated with the website origin (for [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) reasons).
 
 ### Settings
 

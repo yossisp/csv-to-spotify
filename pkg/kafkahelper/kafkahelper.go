@@ -8,8 +8,8 @@ import (
 
 	"github.com/yossisp/csv-to-spotify/pkg/utils"
 
-	"github.com/yossisp/csv-to-spotify/pkg/config"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"github.com/yossisp/csv-to-spotify/pkg/config"
 )
 
 var (

@@ -1,3 +1,5 @@
+![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/easpex/csv-to-spotify/master)
+
 # README
 
 ### About

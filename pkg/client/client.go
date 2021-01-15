@@ -77,7 +77,7 @@ func (provider *SpotifyProvider) GetSearchResults(tracksProgress TracksLookupPro
 		tracksProgress.Quit <- false
 		return
 	}
-	playlistTracks := inputTracks[0:len(inputTracks)]
+	playlistTracks := inputTracks[:]
 	batchesNum := int(math.Ceil(float64(len(playlistTracks)) / float64(resultsNumPerBatch)))
 	log.Println("len(playlistTracks)", len(playlistTracks), "batchesNum", batchesNum)
 	// access token may have expired so it should be set once

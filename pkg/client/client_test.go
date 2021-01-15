@@ -21,6 +21,9 @@ func TestClient(t *testing.T) {
 		}
 		lookupURL := fmt.Sprintf("%s%s", apiBaseURL, lookupTrackRoute)
 		parsedURL, err := url.Parse(lookupURL)
+		if err != nil {
+			t.Errorf("%s: NewRequest: %v", funcName, err)
+		}
 		query, _ := url.ParseQuery(parsedURL.RawQuery)
 		query.Add("q", fmt.Sprintf("artist:%s track:%s", track.Artist, track.Track))
 		query.Add("type", "track")

@@ -30,6 +30,10 @@ func (provider *SpotifyProvider) lookupTrack(track csv.TrackInput) *SearchResult
 	market := conf.Market
 	lookupURL := fmt.Sprintf("%s%s", apiBaseURL, lookupTrackRoute)
 	parsedURL, err := url.Parse(lookupURL)
+	if err != nil {
+		logger("%s: NewRequest: %v", funcName, err)
+		return nil
+	}
 	query, _ := url.ParseQuery(parsedURL.RawQuery)
 	query.Add("q", fmt.Sprintf("artist:%s track:%s", track.Artist, track.Track))
 	query.Add("type", "track")

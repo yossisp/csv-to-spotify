@@ -1,17 +1,24 @@
 repos:
-- repo: git://github.com/dnephin/pre-commit-golang
-  rev: master
-  hooks:
-    - id: go-fmt
-    - id: go-lint
-    - id: go-imports
-    - id: go-mod-tidy
-- repo: local
-  hooks:
-    - id: unit tests
-      name: unit tests
-      entry: sh -c "make test"
-      language: system
-      types: [go]
-      pass_filenames: false
-      verbose: true
+  - repo: git://github.com/dnephin/pre-commit-golang
+    rev: master
+    hooks:
+      - id: go-fmt
+      - id: go-lint
+      - id: go-imports
+      - id: go-mod-tidy
+  - repo: local
+    hooks:
+      - id: unit tests
+        name: unit tests
+        entry: sh -c "make test"
+        language: system
+        types: [go]
+        pass_filenames: false
+        verbose: true
+      - id: ineffassign
+        name: ineffassign
+        entry: sh -c "ineffassign ./..."
+        language: system
+        types: [go]
+        pass_filenames: false
+        verbose: true

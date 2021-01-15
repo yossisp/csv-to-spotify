@@ -166,7 +166,7 @@ func (provider *SpotifyProvider) request(req *http.Request) (response *http.Resp
 		if err != nil {
 			return nil, err
 		}
-		response, err = provider.request(clonedReq)
+		return provider.request(clonedReq)
 	}
 
 	return response, err

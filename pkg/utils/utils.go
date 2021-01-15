@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// LogCb logger function
 type LogCb func(format string, v ...interface{})
 
 // SleepFor sleep for n seconds

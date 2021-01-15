@@ -20,7 +20,7 @@ var (
 	logger               = utils.NewLogger("mongoClient")
 )
 
-func InitMongoConnection() {
+func initMongoConnection() {
 	clientOptions := options.Client().ApplyURI(conf.MongoConnectionString)
 	var err error
 	client, err = mongo.Connect(ctx, clientOptions)
@@ -34,7 +34,7 @@ func InitMongoConnection() {
 }
 
 func init() {
-	InitMongoConnection()
+	initMongoConnection()
 }
 
 // InsertSpotifyUser adds/updates spotify user data

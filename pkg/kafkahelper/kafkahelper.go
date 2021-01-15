@@ -18,11 +18,14 @@ var (
 	logger                           = utils.NewLogger("kafkahelper")
 )
 
-type MessageType int
+type messageType int
 
 const (
-	TrackProgress MessageType = iota
+	// TrackProgress - that the message carries progress information
+	TrackProgress messageType = iota
+	// JobFinished - that the job is finished
 	JobFinished
+	// CSVFileError - an error with CSV file occurred
 	CSVFileError
 )
 
@@ -38,7 +41,7 @@ type Consumer struct {
 
 // Message is used to communicate between producer and consumer
 type Message struct {
-	MsgType MessageType `json:"msgType"`
+	MsgType messageType `json:"msgType"`
 	Msg     interface{} `json:"msg"`
 	UserID  string
 }
@@ -136,7 +139,7 @@ func NewConsumer() *Consumer {
 }
 
 // ProduceMessage produces kafka message
-func (producer *Producer) ProduceMessage(userID string, msgType MessageType, msgParams ...interface{}) {
+func (producer *Producer) ProduceMessage(userID string, msgType messageType, msgParams ...interface{}) {
 	const funcName = "ProduceMessage"
 	var (
 		msg []byte

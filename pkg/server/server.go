@@ -26,7 +26,7 @@ var (
 type serverErrorType int
 
 const (
-	CSVError serverErrorType = iota + 1
+	csvError serverErrorType = iota + 1
 )
 
 type serverError struct {
@@ -82,7 +82,7 @@ func InitServer() {
 		if payload.UserID == nil || payload.CSVFile == nil || dbUser == nil {
 			errMsg := "missing/bad userId or missing csvFile"
 			logger("%s: %s", funcName, errMsg)
-			sendError(w, CSVError)
+			sendError(w, csvError)
 			return
 		}
 		fileName := *payload.FileName

@@ -57,3 +57,4 @@ inputData/
 .env
 
 pkg/client/sample-data/
+bin

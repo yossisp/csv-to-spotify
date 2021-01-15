@@ -21,3 +21,5 @@ docker-build:
 	docker build --no-cache -t $(docker_image):latest .
 docker-run:
 	docker run --rm --env-file=.env -it -p $(port):$(port) $(docker_image)
+pre-commit:
+	pre-commit run --all-files

@@ -1,4 +1,4 @@
-![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/easpex/csv-to-spotify/master)
+![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/easpex/csv-to-spotify/master) [![Go Report Card](https://goreportcard.com/badge/github.com/yossisp/csv-to-spotify)](https://goreportcard.com/report/github.com/yossisp/csv-to-spotify) [![GoDoc](https://godoc.org/github.com/yossisp/csv-to-spotify?status.svg)](http://godoc.org/github.com/yossisp/csv-to-spotify)
 
 # README
 
